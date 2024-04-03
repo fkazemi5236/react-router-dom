@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import HomeScreen from './pages/home';
+import AboutScreen from './pages/about';
+import ProductScreen from './pages/product';
+import ErrorScreen from './pages/404';
+
+import './assets/foundation.css'
+import SiteSharedLayout from './layout';
+import DashboardSharedLayout from './layout/dahboard';
+
+const DashboardHome =() => {
+  return <>
+  <h1>Home Dashboard</h1>
+  <p>lorm ipsum</p>
+  </>
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  return (<>
+    
+    <BrowserRouter>
+    
+      <Routes>
+        <Route path="/" element={<SiteSharedLayout />} >
+          <Route index element={<HomeScreen />} />
+          <Route
+            path="about"
+            element={<AboutScreen />} />
+          <Route path='*' element={<ErrorScreen />} />
+          <Route
+            path="product"
+            element={<ProductScreen />} />
+             <Route
+            path="gallery"
+            element={<h1>Gallery page</h1>} />
+        </Route>
+
+        <Route path='/products'>
+          <Route path='single-product' element={<h2>single product</h2>} />
+        </Route>
+
+        <Route path='/dashboard' element={<DashboardSharedLayout />}>
+          <Route index element={<DashboardHome/>} />
+          <Route path='profile' element={<h2>profile</h2>} />
+          <Route path='setting' element={<h2>settings</h2>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>    
+  </>
   );
 }
 
