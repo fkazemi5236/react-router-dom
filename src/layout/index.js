@@ -1,20 +1,9 @@
-import { Link, Outlet } from "react-router-dom"
+import { Link,NavLink, Outlet } from "react-router-dom"
+import Navbar from "./navbar"
 
 const SiteSharedLayout = () => {
 	return <>
-		<header>
-			<ul className='menu '>
-				<li>
-					<Link to="/">home</Link>
-				</li>
-				<li>
-					<Link to="/about">about</Link>
-				</li>
-				<li>
-					<Link to="/product">product</Link>
-				</li>
-			</ul>
-		</header>
+		<Navbar />
 
 		<div className="page_content">
 			<Outlet />

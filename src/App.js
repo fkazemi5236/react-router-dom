@@ -7,19 +7,22 @@ import ErrorScreen from './pages/404';
 import './assets/foundation.css'
 import SiteSharedLayout from './layout';
 import DashboardSharedLayout from './layout/dahboard';
+import ProductListScreen from './pages/products';
+import SingleProductScreen from './pages/products/single-product';
 
-const DashboardHome =() => {
+const DashboardHome = () => {
   return <>
-  <h1>Home Dashboard</h1>
-  <p>lorm ipsum</p>
+    <h1>Home Dashboard</h1>
+    <p>lorm ipsum</p>
   </>
 }
 
+
 function App() {
   return (<>
-    
+
     <BrowserRouter>
-    
+
       <Routes>
         <Route path="/" element={<SiteSharedLayout />} >
           <Route index element={<HomeScreen />} />
@@ -30,22 +33,26 @@ function App() {
           <Route
             path="product"
             element={<ProductScreen />} />
-             <Route
+          <Route
             path="gallery"
             element={<h1>Gallery page</h1>} />
+
+          <Route path='/products'>
+            <Route index element={<ProductListScreen />} />
+            <Route path='single-product/:productId' element={<SingleProductScreen/>} />
+          </Route>
+          
         </Route>
 
-        <Route path='/products'>
-          <Route path='single-product' element={<h2>single product</h2>} />
-        </Route>
+
 
         <Route path='/dashboard' element={<DashboardSharedLayout />}>
-          <Route index element={<DashboardHome/>} />
+          <Route index element={<DashboardHome />} />
           <Route path='profile' element={<h2>profile</h2>} />
           <Route path='setting' element={<h2>settings</h2>} />
         </Route>
       </Routes>
-    </BrowserRouter>    
+    </BrowserRouter>
   </>
   );
 }
